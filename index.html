@@ -17,7 +17,7 @@
             <h1><i class="fas fa-smile"></i> FreeChat</h1>
         </header>
         <main class="join-main">
-            <form action="chat.html">
+            <form id="joinForm">
                 <div class="form-control">
                     <label for="username">Username</label>
                     <input type="text" name="username" id="username" placeholder="Enter username..." required />
@@ -25,7 +25,7 @@
                 <div class="form-control">
                     <label for="room">Room</label>
                     <select name="room" id="room">
-                        <option value="CoffeeTime">Coffee Time</option>=
+                        <option value="CoffeeTime">Coffee Time</option>
                         <option value="FriendsCorner">Friends Corner</option>
                         <option value="FreeTime">Free Time</option>
                     </select>
@@ -34,6 +34,18 @@
             </form>
         </main>
     </div>
+
+    <script>
+        document.getElementById('joinForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent default form submission
+            const username = document.getElementById('username').value.trim();
+            const room = document.getElementById('room').value;
+            if (username) {
+                window.location.href = `chat.html?username=${encodeURIComponent(username)}&room=${encodeURIComponent(room)}`;
+            }
+        });
+    </script>
+
 </body>
 
 </html>
