@@ -1,22 +1,23 @@
 const path = require("path");
 const express = require("express");
-const app = express();
 const http = require("http");
 const socketio = require("socket.io");
 
-const formatMessage = require("./messages"); // No utils folder
-const { userJoin, getCurrentUser, userLeaves, getRoomUsers } = require("./users");
-
+const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
+
+const formatMessage = require("./messages"); // No 'utils' folder
+const { userJoin, getCurrentUser, userLeaves, getRoomUsers } = require("./users");
+
 const botName = "FreeChat Bot";
 
-// Serve static files from 'public' directory
-app.use(express.static(path.join(__dirname, "public")));
+// Serve static files (CSS, JS, etc.) from the current folder
+app.use(express.static(__dirname));
 
-// Serve index.html when accessing '/'
+// Serve `index.html` when accessing `/`
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // Socket.io events
