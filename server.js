@@ -3,13 +3,13 @@ const http = require("http");
 const express = require("express");
 const app = express();
 const socketio = require("socket.io");
-const formatMessage = require("./utils/messages");
+const formatMessage = require("./messages");
 const {
   userJoin,
   getCurrentUser,
   userLeaves,
   getRoomUsers,
-} = require("./utils/users");
+} = require("./users");
 
 const server = http.createServer(app);
 const io = socketio(server);
